@@ -1,0 +1,3 @@
+subsequence([], _).
+subsequence([Hd|Tl1], [Hd|Tl2]) :- subsequence(Tl1, Tl2).
+subsequence([Hd|Tl1], [_|Tl2]) :- subsequence([Hd|Tl1], Tl2).

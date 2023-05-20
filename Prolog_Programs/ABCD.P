@@ -1,0 +1,40 @@
+all_in_list([],_).
+all_in_list([Hd|Tl], Members) :- (member(Hd, Members) , all_in_list(Tl, Members)).
+
+constraints(A, B) :- A \= B, A \= 'Alice', ( B = 'Carol'; A \= 'Bob').
+
+
+main(Crossings, Left, Right) :-
+    length(Crossings, 5),
+    all_in_list([A,B,C,D,E,F,G,H], ['Alice', 'Bob', 'Carol', 'Davis']),
+    nth0(0, Crossings, [A, B]),constraints(A, B),
+    select(A,Left , Aftera),
+    select(B, Aftera, Afterb),
+    append(Right,[A,B] ,Newr),
+    nth0(1, Crossings, [C]), member(C,[A,B]),
+    select(C, Newr, Nextr), append(Afterb, [C], Newl),
+    nth0(2, Crossings, [D, E]), constraints(D, E),
+    select(D, Newl, Newwl), select(E, Newwl, Nwwl ), 
+    append(Nextr, [D,E], Nxtr), 
+    nth0(3, Crossings, [F]), member(F,Nxtr),
+    select(F, Nxtr, Nr), append(Nwwl, [F], Nl),
+    nth0(4, Crossings, [G,H]), constraints(G, H), 
+    select(G , Nl, Nll), 
+    select(H, Nll, Myl),
+    append(Nr, [G,H], Myr),
+    length(Myl , 0), length(Myr, 4),
+    all_in_list(['Alice'], [A,C,D,F,G]),
+    all_in_list(['Bob'], [A,C,D,F,G]),
+    all_in_list(['Carol'], [A,C,D,F,G]),
+    all_in_list(['Davis'], [A,C,D,F,G]).
+
+printsolution([]).
+printsolution([Hd|Tl]) :- write(Hd), nl, printsolution(Tl).
+
+printanswer([], _).
+printanswer([[Hd1|_]|_], Myset) :- member(Hd1,Myset), write('The person who paddled twice is '), write(Hd1), nl.
+printanswer([[Hd1|_]|Tl], Myset) :- append(Myset, [Hd1], Myset2), printanswer(Tl, Myset2).
+
+abcd(Crossings) :- main(Crossings, ['Alice','Bob','Carol','Davis'], []),
+    			printsolution(Crossings),
+    			printanswer(Crossings, []).

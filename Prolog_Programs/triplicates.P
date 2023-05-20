@@ -1,0 +1,2 @@
+has_no_triplicates([]).
+has_no_triplicates(L) :- \+ (select(Val, L, M), select(Val, M, N), select(Val, N, _)).

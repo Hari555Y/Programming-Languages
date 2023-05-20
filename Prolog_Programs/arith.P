@@ -1,0 +1,32 @@
+randomlyfillSymbols([]).
+randomlyfillSymbols([H|T]) :- member(H, ['p','s']),
+    randomlyfillSymbols(T).
+
+printequation([X], []):- write(X).
+printequation([H1|T], [H3|T2]) :-
+    write(H1), write(H3),
+    printequation(T,T2).
+
+updatesymbolslist(['p'], ['=-']).
+updatesymbolslist(['s'], ['=']).
+updatesymbolslist([H|T] , [H|T1]) :- updatesymbolslist(T, T1).
+
+
+replacedlist([], []).
+replacedlist(['p' |Tl], ['+' | Tl1]) :- replacedlist(Tl, Tl1).
+replacedlist(['s' |Tl], ['-' | Tl1]) :- replacedlist(Tl, Tl1).
+replacedlist([H|T], [H|T1]) :- H\= 'p' , H \= 's', replacedlist(T, T1).
+
+
+plusorsub(H1, H2, H3, Res) :- ((H1 = 'p') ->  Res is H2 + H3 ; Res is H2 - H3).
+
+givevalue([0], []).
+givevalue([H2, H3|Tl2], [H1|Tl1]) :-
+	plusorsub(H1, H2, H3, Res),
+    givevalue([Res|Tl2], Tl1).
+
+findsymbols(Len, Symbols, L) :- Newl is Len -1, length(Symbols, Newl),
+    							 randomlyfillSymbols(Symbols), givevalue(L, Symbols). 
+
+
+arith(L) :- length(L, Len),Len>0, findsymbols(Len, Symbols, L), updatesymbolslist(Symbols, L1), replacedlist(L1, L2), printequation(L,L2).
