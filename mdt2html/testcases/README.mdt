@@ -1,0 +1,70 @@
+There are some of the design decisions while solving this assignments : 
+
+1. We will be providing both the possible types of file in input which are .mdt as well as the .csv files and we will get back the .html file.
+
+2. For the case of headers in the assignment i have assumed that they will not have spaces in between i.e. "# #" is only considered a h1 header.    
+    i.e. i have assumed two inline headers as well because we may want design in heading statement too.
+
+3. Header nesting with header thing taken care of 
+
+4. Headers can also be defined inside blockquotes.
+
+5. Blockquotes themselves can be nested anywhere between blockquotes and there may or maynot be gap between the two symbols.
+
+6. Any HTML tag given in the markdown is taken as it is in the consideration apart from the fact that it can be surrounded by <p> or </p> tags.
+
+7. We have implemented bolding using (**) tag around a string or sentence (assumed can be only in one line). 
+
+8. In case we will have no closing (**) tag or when it is after the symbol "/" we just take the pair of asteriks in the line.
+
+9. Asteriks work in both headers and blockquotes as well but not in tables.
+
+10. There should not be atleast one "/" before the starting asteriks of the bold otherwise i have assumed that it will be just normal (**asteriks).
+
+11. Now, we have added italic as well which will also be taking care of the bolding, header and the blockquote thing.
+
+12. We have implemented bolding using (*) tag around a string or sentence (assumed can be only in one line). 
+
+13. In case we will have no closing (*) tag or when it is after the symbol "/" we just take the asterik in the line.
+
+14. Asteriks (italic) work in both headers and blockquotes as well.
+
+15. There should be atleast one "/" before the starting asteriks of the bold otherwise i have assumed that it will be just normal (*asterik).
+
+16. We have implemented underline using (_) tag around a string or sentence (assumed can be only in one line). Also there can not be anyspace in between the final and the first underscore. 
+
+17. In case we will have no closing (_) tag or when it is after the symbol "/" we just take the underscore in the line.
+
+18. Underscore (underline) work in both headers and blockquotes as well as with italics and the boldings.
+
+19. There should be atleast one " " before the starting underscore of the underline otherwise i have assumed that it will be just normal (_ underscore).
+
+20. For horizontal ruling there should be atleast three (---) consecutive no gap in the line.
+ 
+21. If there is anything else also, just read these as normal signs also. if there is a horizontal line we will assume it as kinda new page and start from the starting of the page.
+
+22. For links just taken [text](http://url/of/the/link) and normal <https://hari.com> format (no gap between any of the things).
+
+23. Link also works with the combination of the above tags, headers, lists and everything else.
+
+24. html table can be done by both using csv as well as the normal <<   >> inclined format.
+
+25. in the csv file there should be no << and >> symbols present.
+
+26. there should just be one space before and after the symbols and the letters in the matrix.
+
+this format    << 1|2|3|4|9
+                    5|6|7|8|10
+                    11|12|13|14|15 >>
+
+27. now finally in case of lists i have tried both lists individually and have seen that the lists can be formed. (there should be a gap after -  in unordered list and a space after dot in ordered list)
+
+28. I have not implemented the ordered list in unordered list as there will be some confusion i.e. ambiguity whether that is that line only or something else.
+
+29. Between any two elements (points) of the ordered list there should be only two "\n" elements no " ".
+
+30. Also I have used the normal conventions for various symbols used in html like ">" or "<" or "\" or "/".
+
+
+
+

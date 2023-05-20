@@ -1,0 +1,7 @@
+This should be automatically linkified - <http://www.cse.iitd.ac.in/~sak>
+
+This should too - <https://www.google.com/>
+
+This should not - <br>
+
+Nor should this - <google.com>
